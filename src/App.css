@@ -1,3 +1,7 @@
+* {
+    scroll-behavior: smooth;
+}
+
 .app {
     min-height: 100vh;
     background-color:darkgrey;
@@ -9,5 +13,21 @@
 @media(min-width: 700px) {
     .app {
         padding-top: 130px;
+    }
+}
+
+.pageTitle {
+    display: flex;
+    justify-content: center;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: 6.4vw;
+    padding: 4px;
+    border-radius: 50px;
+    color: white;
+}
+
+@media (min-width: 1000px) {
+    .pageTitle {
+        font-size: 2vw;
     }
 }

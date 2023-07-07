@@ -2,7 +2,7 @@ import "./Header.css";
 
 const Header = () => {
     return (
-<span className="header">What to Watch </span>
+<span onClick={()=> window.scroll(0,0)} className="header">What to Watch </span>
     )
 };
 

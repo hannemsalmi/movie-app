@@ -1,0 +1,40 @@
+.media {
+    display: flex;
+    flex-direction: column;
+    width: 46%;
+    padding: 5px;
+    margin: 5px 0;
+    background-color:darkslategray;
+    border-radius: 10px;
+    position: relative;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.media:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (min-width: 550px) {
+    .media {
+        width: 200px;
+    }
+}
+
+.poster {
+    border-radius: 10px;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    padding: 8px 0;
+}
+
+subTitle {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+    padding-bottom: 3px;
+}
