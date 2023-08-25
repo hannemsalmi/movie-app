@@ -3,3 +3,10 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.genres{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -1,11 +1,16 @@
-.genres {
-    display: flex;
-    flex-direction: column;
-    width: 46%;
-    padding: 5px;
-    margin: 5px 0;
-    background-color:darkslategray;
-    border-radius: 10px;
+.single_genre {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
     position: relative;
     font-family: 'IBM Plex Sans', sans-serif;
+    background-color:darkslategray;
+    border-radius: 10px;
+}
+
+.genre_name {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    padding: 8px 0;
 }
