@@ -1,0 +1,11 @@
+.genres {
+    display: flex;
+    flex-direction: column;
+    width: 46%;
+    padding: 5px;
+    margin: 5px 0;
+    background-color:darkslategray;
+    border-radius: 10px;
+    position: relative;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
