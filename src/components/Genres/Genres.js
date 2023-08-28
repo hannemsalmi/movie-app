@@ -1,11 +1,11 @@
 import './Genres.css';
 
-const Genres= ({id, name}) => {
-    return ( 
-        <div className="single_genre">
-           <b className="genre_name">{name}</b>
-        </div>
-    )
+const Genres = ({ id, name, onGenreClick, selected }) => {
+    return (
+        <button
+        className={`genre_button ${selected ? "selected" : ""}`}
+        onClick={() => onGenreClick(id)}> {name}</button>
+    );
 }
 
 export default Genres

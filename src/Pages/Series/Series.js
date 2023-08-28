@@ -9,6 +9,7 @@ const Series = () => {
         const [page, setPage] = useState(1);
         const [content, setContent] = useState([]);
         const [genres, setGenres] = useState([]);
+        const [selectedGenres, setSelectedGenres] = useState([]);
 
         const fetchGenres = async () => {
 
@@ -24,25 +25,38 @@ const Series = () => {
 
     
         const fetchSeries = async () => {
-    
-            const { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
-              );
-            console.log(data);
+            let apiUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
+
+            if (selectedGenres.length > 0) {
+                const selectedGenresString = selectedGenres.join(',');
+                apiUrl += `&with_genres=${selectedGenresString}`;
+            }
+        
+            console.log('API URL:', apiUrl);
+        
+            const { data } = await axios.get(apiUrl);
+            console.log('API Response:', data);
+        
             setContent(data.results);
-        };
-    
+        };    
         useEffect(() => {
             fetchSeries();
-        }, [page])
+        }, [page, selectedGenres]);
+
+    
+        const handleGenreClick = (genreId) => {
+            setSelectedGenres([genreId]);
+            setPage(1);
+        };
     
         return (
             <div>
                 <span className='pageTitle'>Series</span>
                 <div className="genres">
                     {
-                        genres && genres.map((g) => (
-                            <Genres key={g.id} name={g.name} />
-                        ))
+                genres && genres.map((g) => (
+                    <Genres key={g.id} id={g.id} name={g.name} onGenreClick={handleGenreClick} selected={selectedGenres.includes(g.id)} />
+                ))
                     }
                 </div>
                 <div className="series">
@@ -57,4 +71,4 @@ const Series = () => {
         )
     }
 
-export default Series
+export default Series;

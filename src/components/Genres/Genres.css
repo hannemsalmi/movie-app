@@ -1,4 +1,4 @@
-.single_genre {
+.genre_button {
     padding: 10px;
     margin: 5px;
     border-radius: 15px;
@@ -7,6 +7,17 @@
     background-color:darkslategray;
     border-radius: 10px;
 }
+
+.genre_button.selected {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    position: relative;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color:white;
+    border-radius: 10px;
+}
+
 
 .genre_name {
     width: 100%;
