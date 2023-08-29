@@ -10,6 +10,7 @@ const Series = () => {
         const [content, setContent] = useState([]);
         const [genres, setGenres] = useState([]);
         const [selectedGenres, setSelectedGenres] = useState(['all']);
+        const media_type = 'tv';
 
         useEffect(() => {
             fetchGenres();
@@ -71,7 +72,7 @@ const Series = () => {
                 <div className="series">
                 {
                     content && content.map((c) => (
-                        <SingleContent key={c.id} id={c.id} poster={c.poster_path} title={c.title || c.name} date={c.first_air_date || c.release_date} media_type={c.media_type} vote_average={c.vote_average}/>
+                        <SingleContent key={c.id} id={c.id} poster={c.poster_path} title={c.title || c.name} date={c.first_air_date || c.release_date} media_type={media_type} vote_average={c.vote_average}/>
                     ))
                 }
                 </div>

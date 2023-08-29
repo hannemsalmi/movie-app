@@ -8,6 +8,7 @@ const Movies = () => {
 
     const [page, setPage] = useState(1);
     const [content, setContent] = useState([]);
+    const media_type = 'movie';
 
     const fetchMovies = async () => {
 
@@ -27,7 +28,7 @@ const Movies = () => {
             <div className="movies">
             {
                 content && content.map((c) => (
-                    <SingleContent key={c.id} id={c.id} poster={c.poster_path} title={c.title || c.name} date={c.first_air_date || c.release_date} media_type={c.media_type} vote_average={c.vote_average}/>
+                    <SingleContent key={c.id} id={c.id} poster={c.poster_path} title={c.title || c.name} date={c.first_air_date || c.release_date} media_type={media_type}  vote_average={c.vote_average}/>
                 ))
             }
             </div>

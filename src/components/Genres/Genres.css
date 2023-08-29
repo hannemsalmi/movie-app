@@ -6,6 +6,7 @@
     font-family: 'IBM Plex Sans', sans-serif;
     background-color:darkslategray;
     border-radius: 10px;
+    color: white;
 }
 
 .genre_button.selected, .genre_button.selected-all {
@@ -16,6 +17,7 @@
     font-family: 'IBM Plex Sans', sans-serif;
     background-color:white;
     border-radius: 10px;
+    color:black;
 }
 
 
