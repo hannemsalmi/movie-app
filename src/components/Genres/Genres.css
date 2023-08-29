@@ -8,7 +8,7 @@
     border-radius: 10px;
 }
 
-.genre_button.selected {
+.genre_button.selected, .genre_button.selected-all {
     padding: 10px;
     margin: 5px;
     border-radius: 15px;

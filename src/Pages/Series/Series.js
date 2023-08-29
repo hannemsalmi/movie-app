@@ -9,7 +9,12 @@ const Series = () => {
         const [page, setPage] = useState(1);
         const [content, setContent] = useState([]);
         const [genres, setGenres] = useState([]);
-        const [selectedGenres, setSelectedGenres] = useState([]);
+        const [selectedGenres, setSelectedGenres] = useState(['all']);
+
+        useEffect(() => {
+            fetchGenres();
+            fetchSeries();
+        }, [page, selectedGenres]);
 
         const fetchGenres = async () => {
 
@@ -25,24 +30,16 @@ const Series = () => {
 
     
         const fetchSeries = async () => {
-            let apiUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
-
+            let apiUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`;
+            
             if (selectedGenres.length > 0) {
                 const selectedGenresString = selectedGenres.join(',');
                 apiUrl += `&with_genres=${selectedGenresString}`;
             }
         
-            console.log('API URL:', apiUrl);
-        
             const { data } = await axios.get(apiUrl);
-            console.log('API Response:', data);
-        
             setContent(data.results);
-        };    
-        useEffect(() => {
-            fetchSeries();
-        }, [page, selectedGenres]);
-
+        };   
     
         const handleGenreClick = (genreId) => {
             setSelectedGenres([genreId]);
@@ -53,11 +50,23 @@ const Series = () => {
             <div>
                 <span className='pageTitle'>Series</span>
                 <div className="genres">
-                    {
-                genres && genres.map((g) => (
-                    <Genres key={g.id} id={g.id} name={g.name} onGenreClick={handleGenreClick} selected={selectedGenres.includes(g.id)} />
-                ))
-                    }
+                    <Genres
+                        key="all"
+                        id="all"
+                        name="All"
+                        onGenreClick={handleGenreClick}
+                        selected={selectedGenres.includes('all')}
+                    />
+
+                    {genres && genres.map((g) => (
+                        <Genres
+                            key={g.id}
+                            id={g.id}
+                            name={g.name}
+                            onGenreClick={handleGenreClick}
+                            selected={selectedGenres.includes(g.id)}
+                        />
+                    ))}
                 </div>
                 <div className="series">
                 {
