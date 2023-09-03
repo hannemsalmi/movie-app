@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SingleContent from '../../components/SingleContent/SingleContent';
+import './Search.css';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,6 +31,7 @@ const Search = () => {
     <div>
       <span className='pageTitle'>Search</span>
       <input
+        className='search-box'
         type='text'
         placeholder='Search for movies and series...'
         value={searchQuery}

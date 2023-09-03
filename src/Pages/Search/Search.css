@@ -1,0 +1,14 @@
+.search-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.search-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
