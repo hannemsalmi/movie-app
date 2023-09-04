@@ -10,12 +10,13 @@ const Series = () => {
         const [content, setContent] = useState([]);
         const [genres, setGenres] = useState([]);
         const [selectedGenres, setSelectedGenres] = useState(['all']);
+        const [sortBy, setSortBy] = useState('popularity.desc'); 
         const media_type = 'tv';
 
         useEffect(() => {
             fetchGenres();
             fetchSeries();
-        }, [page, selectedGenres]);
+        }, [page, selectedGenres, sortBy]);
 
         const fetchGenres = async () => {
 
@@ -32,18 +33,30 @@ const Series = () => {
     
         const fetchSeries = async () => {
             let apiUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`;
-            
+        
             if (selectedGenres.length > 0) {
                 const selectedGenresString = selectedGenres.join(',');
                 apiUrl += `&with_genres=${selectedGenresString}`;
             }
-        
+    
+            if (sortBy === 'popularity.desc' || sortBy === 'popularity.asc') {
+                apiUrl += `&sort_by=${sortBy}`;
+            } else if (sortBy === 'first_air_date.desc' || sortBy === 'first_air_date.asc') {
+            apiUrl += `&sort_by=${sortBy}`;	
+        }
             const { data } = await axios.get(apiUrl);
+            
             setContent(data.results);
-        };   
+        };
     
         const handleGenreClick = (genreId) => {
             setSelectedGenres([genreId]);
+            setPage(1);
+        };
+
+        const handleSortChange = (event) => {
+            const selectedSort = event.target.value;
+            setSortBy(selectedSort);
             setPage(1);
         };
     
@@ -68,6 +81,15 @@ const Series = () => {
                             selected={selectedGenres.includes(g.id)}
                         />
                     ))}
+                </div>
+                <div>
+                <label htmlFor="sort">Sort by:</label>
+                <select id="sort" onChange={handleSortChange} value={sortBy}>
+                    <option value="popularity.desc">Most popular</option>
+                    <option value="popularity.asc">Least popular</option>
+                    <option value="first_air_date.desc">Newest to oldest</option>
+                    <option value="first_air_date.asc">Oldest to newest</option>
+                </select>
                 </div>
                 <div className="series">
                 {
